@@ -10,7 +10,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     # Change me!
-    "dojo-python.com"
+    "ripper.theo.do"
 ]
 
 if "ALLOWED_HOST" in os.environ:
