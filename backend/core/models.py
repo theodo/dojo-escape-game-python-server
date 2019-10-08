@@ -56,6 +56,7 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
     level = models.IntegerField(default=0)
+    player_id = models.IntegerField(blank=True, null=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
