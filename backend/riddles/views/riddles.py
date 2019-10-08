@@ -5,11 +5,11 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-@api_view(['POST'])
+@api_view(["POST"])
 def upgrade_to_level_1(request):
     data = request.data
     try:
-        username = data['username']
+        username = data["username"]
     except KeyError:
         return Response({}, status=400)
 
