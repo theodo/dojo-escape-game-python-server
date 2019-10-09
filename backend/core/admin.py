@@ -4,7 +4,9 @@ from django.contrib.auth.admin import UserAdmin
 
 
 class CustomUserAdmin(UserAdmin):
-    fieldsets = ((None, {"fields": ("level", "player_id")}),) + UserAdmin.fieldsets
+    fieldsets = (
+        (None, {"fields": ("level", "player_id", "hint")}),
+    ) + UserAdmin.fieldsets
 
 
 admin.site.register(User, CustomUserAdmin)
