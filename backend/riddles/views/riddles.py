@@ -57,3 +57,14 @@ def get_json(request):
                 f"{username}-{i}"
             ] = f"{request.build_absolute_uri('/api/get-hint/')}?token={token.decode('ascii')}"  # .decode is needed because py-jwt return a binary string
     return Response(response, status=200)
+
+
+@api_view(["GET"])
+def get_hint(request):
+    token = request.GET.get("token", "")
+    data = jwt.decode(token, SECRET, algorithms=["HS256"])
+    try:
+        user = User.objects.get(player_id=data["player_id"], username=data["username"])
+        return Response(user.hint, status=200)
+    except User.DoesNotExist:
+        return Response({}, status=400)
