@@ -1,7 +1,6 @@
 import random
 
 import jwt
-
 from core.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -49,13 +48,13 @@ def get_json(request):
     response = {}
     for user in users:
         username = user.username
-        for i in range(10000):
+        for i in range(100):
             token = jwt.encode(
                 {"player_id": i, "username": username}, SECRET, algorithm="HS256"
             )
             response[
                 f"{username}-{i}"
-            ] = f"{request.build_absolute_uri('/api/get-hint/')}?token={token.decode('ascii')}"  # .decode is needed because py-jwt return a binary string
+            ] = f"{request.build_absolute_uri('/api/get-hint')}?token={token.decode('ascii')}"  # .decode is needed because py-jwt return a binary string
     return Response(response, status=200)
 
 
