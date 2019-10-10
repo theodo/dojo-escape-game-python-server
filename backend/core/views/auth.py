@@ -22,17 +22,9 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         except TokenError as e:
             raise InvalidToken(e.args[0])
 
-        refresh_token = serializer.validated_data.pop("refresh")
-        response = Response(serializer.validated_data, status=status.HTTP_200_OK)
-        response.set_cookie(
-            settings.REFRESH_TOKEN,
-            refresh_token,
-            expires=datetime.now() + settings.SIMPLE_JWT["REFRESH_TOKEN_LIFETIME"],
-            httponly=True,
-            secure=(not settings.DEBUG),
-        )
+        serializer.validated_data.pop("refresh")
 
-        return response
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
 class CustomTokenRefreshView(TokenRefreshView):

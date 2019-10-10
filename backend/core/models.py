@@ -59,7 +59,7 @@ class User(AbstractUser):
     player_id = models.IntegerField(blank=True, null=True)
     hint = models.TextField(blank=True, null=True)
 
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []
 
     objects = UserManager()
