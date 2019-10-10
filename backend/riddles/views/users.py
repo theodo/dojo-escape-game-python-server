@@ -7,7 +7,7 @@ from rest_framework.response import Response
 @api_view(["GET"])
 def get_users(request):
     """this endpoint returns the list of users and their current level"""
-    users = User.objects.filter(is_staff=False)
+    users = User.objects.filter(is_staff=False, player_id__isnull=False)
     serializer = UserSerializer(users, many=True)
 
     sorted_users_by_level = sorted(serializer.data, key=lambda user: -user["level"])
