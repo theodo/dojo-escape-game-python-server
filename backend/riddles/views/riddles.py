@@ -48,7 +48,7 @@ def get_json(request):
     response = {}
     for user in users:
         username = user.username
-        for i in range(100):
+        for i in range(10000):
             token = jwt.encode(
                 {"player_id": i, "username": username}, SECRET, algorithm="HS256"
             )
