@@ -59,6 +59,7 @@ class User(AbstractUser):
     player_id = models.IntegerField(blank=True, null=True)
     hint = models.TextField(blank=True, null=True)
     ip_address = models.CharField(max_length=50, blank=True, null=True)
+    server_mounted = models.BooleanField(default=False)
 
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = []
