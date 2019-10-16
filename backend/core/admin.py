@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 
 class CustomUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {"fields": ("level", "player_id", "hint")}),
+        (None, {"fields": ("level", "player_id", "hint", "ip_address")}),
     ) + UserAdmin.fieldsets
 
 
