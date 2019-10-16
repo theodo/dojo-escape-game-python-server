@@ -2,7 +2,8 @@ import random
 
 import jwt
 from core.models import User
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 SECRET = "MY_AWESOME_SECRET"
@@ -67,3 +68,21 @@ def get_hint(request):
         return Response(user.hint, status=200)
     except User.DoesNotExist:
         return Response({}, status=400)
+
+
+@api_view(["POST"])
+@permission_classes((IsAuthenticated,))
+def server_mounted(request):
+    user = request.user
+    data = request.data
+
+    user.ip_address = data["ip_address"]
+    user.server_mounted = True
+    user.save()
+
+    return Response(
+        "Detective {}, we received your message. You will hear from us shortly".format(
+            user.username
+        ),
+        status=200,
+    )
