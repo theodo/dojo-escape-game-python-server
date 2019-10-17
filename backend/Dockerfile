@@ -21,3 +21,4 @@ WORKDIR /code
 COPY Pipfile ./
 COPY Pipfile.lock ./
 RUN pipenv install --dev --system --deploy
+RUN pip install django-cors-headers

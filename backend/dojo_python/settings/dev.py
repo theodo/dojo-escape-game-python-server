@@ -5,9 +5,12 @@ SECRET_KEY = "eb03076553e70f305f99e7412fee3b473929d80ff4fae59402"
 DEBUG = True
 INTERNAL_IPS = ["127.0.0.1", "172.16.162.1"]
 
-INSTALLED_APPS = INSTALLED_APPS + ["debug_toolbar", "django_extensions"]
+INSTALLED_APPS = INSTALLED_APPS + ["debug_toolbar", "django_extensions", "corsheaders"]
 
-MIDDLEWARE = MIDDLEWARE + ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+MIDDLEWARE = MIDDLEWARE + [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+]
 
 # Uploaded files storage
 MEDIA_ROOT = "/uploads/"

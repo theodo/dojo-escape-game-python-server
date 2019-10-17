@@ -42,5 +42,4 @@ if settings.DEBUG:
         + urlpatterns
     )
 
-if os.environ.get("APP_ENV") == "prod":
-    urlpatterns = [re_path(r"^api/", include(urlpatterns))]
+urlpatterns = [re_path(r"^api/", include(urlpatterns))]

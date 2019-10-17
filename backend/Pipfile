@@ -21,6 +21,7 @@ sentry-sdk = "*"
 watchtower = "*"
 django-axes = "*"
 
+
 [dev-packages]
 "flake8" = "*"
 factory-boy = "*"

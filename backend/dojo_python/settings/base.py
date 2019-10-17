@@ -149,3 +149,5 @@ STATIC_URL = "/django-static/"
 # Emails
 
 EMAIL_BASE_URL = os.environ.get("EMAIL_BASE_URL")
+
+CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)
