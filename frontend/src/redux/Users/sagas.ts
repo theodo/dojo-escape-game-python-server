@@ -13,7 +13,7 @@ function delay(duration: number) {
 
 // worker Saga: will be fired on USER_FETCH_REQUEST actions
 export function* fetchUserSaga(action: ActionType<typeof fetchUsers.request>) {
-  const endpoint = `${process.env.REACT_APP_API_BASE_URL}/api/users`;
+  const endpoint = `/users`;
   try {
     const response = yield call(makeGetRequest, endpoint);
     yield put(fetchUsers.success({ users: response.users }));
