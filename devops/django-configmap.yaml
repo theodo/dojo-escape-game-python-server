@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-config
+  namespace: production
+data:
+  DJANGO_SETTINGS_MODULE: dojo_python.settings.prod
+  SECRET_KEY: awesome_secret
+  APP_ENV: prod
+  LOG_PATH: ./logs
+  POSTGRES_DB: dojo-python

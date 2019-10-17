@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: django-app-ingress
+spec:
+  rules:
+    - host: ripper.theo.do
+      http:
+        paths:
+          - path: /django-static
+            backend:
+              serviceName: statics-service
+              servicePort: 80
+          - path: /api
+            backend:
+              serviceName: django-service
+              servicePort: 8000
+          - path: /
+            backend:
+              serviceName: react-service
+              servicePort: 80

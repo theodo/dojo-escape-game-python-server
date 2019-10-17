@@ -10,7 +10,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     # Change me!
-    "ripper.theo.do"
+    "*"
 ]
 
 if "ALLOWED_HOST" in os.environ:
@@ -62,9 +62,6 @@ CACHES = {
         "LOCATION": "application_cache",
     }
 }
-
-# Static files
-STATICFILES_STORAGE = "core.storage.ManifestStorage"
 
 # Sentry
 if "SENTRY_DSN" in os.environ:
