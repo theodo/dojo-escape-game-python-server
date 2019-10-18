@@ -50,4 +50,4 @@ spec:
           readinessProbe:
             httpGet:
               port: 8000
-              path: api/health
+              path: health

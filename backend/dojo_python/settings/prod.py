@@ -54,6 +54,7 @@ LOGGING = {
     },
 }
 
+FORCE_SCRIPT_NAME = "/api"
 
 # Caching
 CACHES = {

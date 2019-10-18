@@ -41,5 +41,3 @@ if settings.DEBUG:
         + static(settings.MEDIA_URL_PATH, document_root=settings.MEDIA_ROOT)
         + urlpatterns
     )
-
-urlpatterns = [re_path(r"^api/", include(urlpatterns))]
