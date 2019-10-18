@@ -8,7 +8,6 @@ interface Props {
 
 const ScoreBar: React.FunctionComponent<Props> = ({ levelCount = 6, level }) => {
   const levels = Array.from(Array(levelCount).keys()).slice(1);
-  console.log(levels);
   return (
     <Container>
       <FirstPoint isActive={level === 0}>

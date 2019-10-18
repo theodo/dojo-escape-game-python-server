@@ -1,5 +1,7 @@
 import 'whatwg-fetch';
 
+const backendBaseUrl = process.env.REACT_APP_API_BASE_URL || '';
+
 function parseJSON(response: Response) {
   return response.json();
 }
@@ -36,14 +38,20 @@ const buildQueryParamsForUrl = (paramsKeyValue: ParamsKeyValueType) => {
   return params.toString();
 };
 
-export const makeGetRequest = (url: string, params?: ParamsKeyValueType) => {
+export const makeGetRequest = (endpoint: string, params?: ParamsKeyValueType) => {
+  const url = `${backendBaseUrl}${endpoint}`;
   const urlWithParams = params ? `${url}?${buildQueryParamsForUrl(params)}` : url;
   return fetch(urlWithParams, { credentials: 'same-origin' })
     .then(checkStatus)
     .then(parseJSON);
 };
 
-export const makePostRequest = (url: string, postData?: object, params?: ParamsKeyValueType) => {
+export const makePostRequest = (
+  endpoint: string,
+  postData?: object,
+  params?: ParamsKeyValueType,
+) => {
+  const url = `${backendBaseUrl}${endpoint}`;
   const urlWithParams = params ? `${url}?${buildQueryParamsForUrl(params)}` : url;
   return fetch(urlWithParams, {
     credentials: 'same-origin',
@@ -58,7 +66,8 @@ export const makePostRequest = (url: string, postData?: object, params?: ParamsK
     .then(parseJSON);
 };
 
-export const makePutRequest = (url: string, data: object, params?: ParamsKeyValueType) => {
+export const makePutRequest = (endpoint: string, data: object, params?: ParamsKeyValueType) => {
+  const url = `${backendBaseUrl}${endpoint}`;
   const urlWithParams = params ? `${url}?${buildQueryParamsForUrl(params)}` : url;
   return fetch(urlWithParams, {
     credentials: 'same-origin',
@@ -73,8 +82,9 @@ export const makePutRequest = (url: string, data: object, params?: ParamsKeyValu
     .then(parseJSON);
 };
 
-export const makeDeleteRequest = (url: string, data: object) =>
-  fetch(url, {
+export const makeDeleteRequest = (endpoint: string, data: object) => {
+  const url = `${backendBaseUrl}${endpoint}`;
+  return fetch(url, {
     credentials: 'same-origin',
     method: 'DELETE',
     headers: {
@@ -85,3 +95,4 @@ export const makeDeleteRequest = (url: string, data: object) =>
   })
     .then(checkStatus)
     .then(parseJSON);
+};
