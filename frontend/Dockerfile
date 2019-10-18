@@ -5,7 +5,7 @@ COPY . .
 RUN yarn install
 ENV REACT_APP_ENV=production
 # Change me!
-ENV REACT_APP_API_BASE_URL=ripper.theo.do/api
+ENV REACT_APP_API_BASE_URL=http://ripper.theo.do/api
 ENV NODE_PATH=src/
 RUN yarn build
 
