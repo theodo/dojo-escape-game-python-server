@@ -107,7 +107,7 @@ def culprit(request):
 
     if data["culprit_name"].lower() == "jordan lao":
         return Response(
-            "Détective {}, vous m'avez percé à jour. Ne me dénoncez pas s'il vous plaît ! En échange je suis prêt à dénoncer tous mes complices ! Tu peux récupérer la liste membres de l'organisation dans cette archive-là : {}. Pour ouvrir le fichier, tu peux utiliser le mot de passe suivant : {}".format(
+            "Détective {}, tu m'as percé à jour. Ne me dénonce pas s'il te plaît ! En échange je suis prêt à dénoncer tous mes complices ! Tu peux récupérer la liste membres de l'organisation dans cette archive-là : {}. Pour ouvrir le fichier, tu peux utiliser le mot de passe suivant : {}".format(
                 user.username, "7c98210e2cc.zip", "QuiPeutMeStopper77"
             ),
             status=200,
@@ -115,7 +115,7 @@ def culprit(request):
 
     else:
         return Response(
-            "Détective {}, vous vous êtes trompé. Je ne suis pas le coupable. NE ME TOUCHEZ PAS!".format(
+            "Détective {}, vous vous êtes trompé. Nous avons vérifié, ce n'est pas le coupable".format(
                 user.username
             ),
             status=400,
