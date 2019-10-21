@@ -52,6 +52,7 @@ def get_hint(request):
         user = User.objects.get(player_id=data["player_id"], username=data["username"])
         if user.level == 0:
             user.level = 1
+            user.save()
 
         return Response(user.hint, status=200)
     except User.DoesNotExist:
