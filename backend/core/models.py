@@ -62,7 +62,6 @@ class User(AbstractUser):
     server_mounted = models.BooleanField(default=False)
 
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = []
 
     objects = UserManager()
 
