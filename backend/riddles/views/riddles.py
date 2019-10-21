@@ -9,25 +9,8 @@ from rest_framework.response import Response
 SECRET = "MY_AWESOME_SECRET"
 ADMIN_SECRET = "the_killer_is_colonel_custard"
 
-@api_view(["POST"])
-def upgrade_to_level_1(request):
-    data = request.data
-    try:
-        username = data["username"]
-    except KeyError:
-        return Response({}, status=400)
 
-    try:
-        user = User.objects.get(username=username)
-    except User.DoesNotExist:
-        return Response({}, status=404)
-
-    user.level = 1
-    user.save()
-
-    return Response({}, status=200)
-
-
+# Riddle 1
 @api_view(["GET"])
 def get_username(request, player_id):
     try:
@@ -38,6 +21,7 @@ def get_username(request, player_id):
         user_index = random.randint(0, len(free_users))
         user = free_users[user_index]
         user.player_id = player_id
+        user.level = 0
         user.save()
 
         return Response(user.username, status=200)
@@ -59,12 +43,16 @@ def get_json(request):
     return Response(response, status=200)
 
 
+# Riddle 2
 @api_view(["GET"])
 def get_hint(request):
     token = request.GET.get("token", "")
     data = jwt.decode(token, SECRET, algorithms=["HS256"])
     try:
         user = User.objects.get(player_id=data["player_id"], username=data["username"])
+        if user.level == 0:
+            user.level = 1
+
         return Response(user.hint, status=200)
     except User.DoesNotExist:
         return Response({}, status=400)
@@ -76,9 +64,12 @@ def get_all_ips(request):
     if token != ADMIN_SECRET:
         return Response(status=404)
     users_with_ips = User.objects.filter(level=4).exclude(ip_address__isnull=True)
-    return Response({user.username : user.ip_address for user in users_with_ips}, status=200)
+    return Response(
+        {user.username: user.ip_address for user in users_with_ips}, status=200
+    )
 
 
+# Riddle 4
 @api_view(["POST"])
 @permission_classes((IsAuthenticated,))
 def server_mounted(request):
@@ -87,6 +78,10 @@ def server_mounted(request):
 
     user.ip_address = data["ip_address"]
     user.server_mounted = True
+
+    if user.level == 2:
+        user.level = 3
+
     user.save()
 
     return Response(

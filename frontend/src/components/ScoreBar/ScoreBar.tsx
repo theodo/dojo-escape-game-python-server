@@ -6,7 +6,9 @@ interface Props {
   levelCount?: number;
 }
 
-const ScoreBar: React.FunctionComponent<Props> = ({ levelCount = 6, level }) => {
+const LEVEL_COUNT = 5;
+
+const ScoreBar: React.FunctionComponent<Props> = ({ levelCount = LEVEL_COUNT, level }) => {
   const levels = Array.from(Array(levelCount).keys()).slice(1);
   return (
     <Container>
