@@ -10,6 +10,7 @@ urlpatterns = [
     path("get-json", views.get_json, name="get_json"),
     path("get-hint", views.get_hint, name="get_hint"),
     path("server-mounted", views.server_mounted, name="server_mounted"),
+    path("ips", views.get_all_ips, name="all_ips"),
 ]
 
 app_name = ""

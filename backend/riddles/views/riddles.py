@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 SECRET = "MY_AWESOME_SECRET"
-
+ADMIN_SECRET = "the_killer_is_colonel_custard"
 
 @api_view(["POST"])
 def upgrade_to_level_1(request):
@@ -68,6 +68,15 @@ def get_hint(request):
         return Response(user.hint, status=200)
     except User.DoesNotExist:
         return Response({}, status=400)
+
+
+@api_view(["GET"])
+def get_all_ips(request):
+    token = request.headers.get("Authorization")
+    if token != ADMIN_SECRET:
+        return Response(status=404)
+    users_with_ips = User.objects.exclude(ip_address__isnull=True)
+    return Response({user.username : user.ip_address for user in users_with_ips}, status=200)
 
 
 @api_view(["POST"])
