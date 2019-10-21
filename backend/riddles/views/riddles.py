@@ -91,3 +91,32 @@ def server_mounted(request):
         ),
         status=200,
     )
+
+
+# Riddle 5
+@api_view(["POST"])
+@permission_classes((IsAuthenticated,))
+def culprit(request):
+    user = request.user
+    data = request.data
+
+    if user.level == 3:
+        user.level = 4
+
+    user.save()
+
+    if data["culprit_name"].lower() == "jordan lao":
+        return Response(
+            "Détective {}, tu m'as percé à jour. Ne me dénonce pas s'il te plaît ! En échange je suis prêt à dénoncer tous mes complices ! Tu peux récupérer la liste membres de l'organisation dans cette archive-là : {}. Pour ouvrir le fichier, tu peux utiliser le mot de passe suivant : {}".format(
+                user.username, "7c98210e2cc.zip", "QuiPeutMeStopper77"
+            ),
+            status=200,
+        )
+
+    else:
+        return Response(
+            "Détective {}, vous vous êtes trompé. Nous avons vérifié, ce n'est pas le coupable".format(
+                user.username
+            ),
+            status=400,
+        )
