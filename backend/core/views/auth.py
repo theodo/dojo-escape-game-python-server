@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from core.models import User
 from django.conf import settings
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -14,8 +15,10 @@ class CustomTokenObtainPairView(TokenObtainPairView):
     Instead, we send the refresh token in a secure cookie not readable by the javascript.
     """
 
+    # Riddle 3
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+        data = request.data
+        serializer = self.get_serializer(data=data)
 
         try:
             serializer.is_valid(raise_exception=True)
@@ -23,6 +26,10 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             raise InvalidToken(e.args[0])
 
         serializer.validated_data.pop("refresh")
+        user = User.objects.get(username=data["username"])
+        if user.level == 1:
+            user.level = 2
+            user.save()
 
         return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
