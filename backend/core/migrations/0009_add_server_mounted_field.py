@@ -5,14 +5,12 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('core', '0007_add_ip_address_field_to_user_model'),
-    ]
+    dependencies = [("core", "0008_add_ip_address_field_to_user_model")]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='server_mounted',
+            model_name="user",
+            name="server_mounted",
             field=models.BooleanField(default=False),
-        ),
+        )
     ]
