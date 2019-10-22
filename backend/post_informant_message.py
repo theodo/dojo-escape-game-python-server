@@ -17,7 +17,8 @@ class colors:
 BASE_URL = "http://ripper.theo.do"
 SLEEP_TIMER = 20
 ADMIN_SECRET = "the_killer_is_colonel_custard"
-SPOTIFY_HINT = "ID DE PLAYLIST"
+SPOTIFY_HINT = "4wRfyALTv1jNL7HScIhd1S"
+SPOTIFY_TOKEN = "TO BE COMPLETED"
 BASE_MESSAGE_CONTENT = """
 Ok {}, j'ai des infos pour vous.
 Un portable a été retrouvé sur une des scènes de crime.
@@ -27,6 +28,7 @@ Heureusement, on avait mis un mouchard dessus qui a capté quelques octets de do
 Les données en arrière-plan, tout le monde oublie de les désactiver. Une chance pour nous !
 On sait que la chaîne de caractères "{}" a été envoyée aux serveurs de Spotify.
 Le voleur a sûrement un lien avec le(s) tueur(s). Trouvez qui a utilisé le téléphone en retrouvant à quoi correspond "{}".
+Vous pouvez utiliser mon compte pour vous connecter aux services de Spotify : {}
 Si vous trouvez la réponse, envoyez-moi le nom du coupable sur la route /culprit, dans la propriété culprit_name
 """
 
@@ -40,7 +42,9 @@ while True:
         try:
             response = requests.post(
                 f"http://{ip}:5000",
-                data=BASE_MESSAGE_CONTENT.format(username, SPOTIFY_HINT, SPOTIFY_HINT),
+                data=BASE_MESSAGE_CONTENT.format(
+                    username, SPOTIFY_HINT, SPOTIFY_HINT, SPOTIFY_TOKEN
+                ),
                 timeout=3,
             )
             assert response.status_code == 200
