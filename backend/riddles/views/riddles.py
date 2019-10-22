@@ -86,9 +86,7 @@ def server_mounted(request):
     user.save()
 
     return Response(
-        "Detective {}, we received your message. You will hear from us shortly".format(
-            user.username
-        ),
+        f"Détective {user.username}, nous avons reçu votre message. Veuillez patienter, nous allons vous briefer sur votre mission",
         status=200,
     )
 
@@ -106,17 +104,15 @@ def culprit(request):
     user.save()
 
     if data["culprit_name"].lower() == "jordan lao":
+        archive_name = "7c98210e2cc.zip"
+        archive_password = "QuiPeutMeStopper77"
         return Response(
-            "Détective {}, tu m'as percé à jour. Ne me dénonce pas s'il te plaît ! En échange je suis prêt à dénoncer tous mes complices ! Tu peux récupérer la liste membres de l'organisation dans cette archive-là : {}. Pour ouvrir le fichier, tu peux utiliser le mot de passe suivant : {}".format(
-                user.username, "7c98210e2cc.zip", "QuiPeutMeStopper77"
-            ),
+            f"Détective {user.username}, tu m'as percé à jour. Ne me dénonce pas s'il te plaît ! En échange je suis prêt à dénoncer tous mes complices ! Tu peux récupérer des données sensibles sur l'organisation dans cette archive : {archive_name}. Pour ouvrir le fichier, tu peux utiliser le mot de passe suivant : {archive_password}",
             status=200,
         )
 
     else:
         return Response(
-            "Détective {}, vous vous êtes trompé. Nous avons vérifié, ce n'est pas le coupable".format(
-                user.username
-            ),
+            f"Détective {user.username}, vous vous êtes trompé. Nous avons vérifié, ce n'est pas le coupable",
             status=400,
         )
