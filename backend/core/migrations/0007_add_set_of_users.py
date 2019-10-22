@@ -4,16 +4,16 @@ from core.fixtures.users import passwords, usernames
 from django.contrib.auth.hashers import make_password
 from django.db import migrations
 
-colors = ["Rose pâle", "Fuchsia", "Jaune", "Orange", "Green", "Blue"]
+colors = ["Rose pâle", "Fuchsia", "Jaune", "Orange", "Vert", "Bleu"]
 
 rooms = [
     "Salle BAM",
-    "Salle métro",
+    "Salle Métro",
     "Salle Sicara",
     "Salle TBC2",
     "Dojo, cabine téléphonique de droite",
     "Dojo, cabine téléphonique de gauche",
-    "Fond le l'open space, cabine téléphonique",
+    "Fond de l'open space, cabine téléphonique",
     "Cuisine, derrière Yoda",
 ]
 

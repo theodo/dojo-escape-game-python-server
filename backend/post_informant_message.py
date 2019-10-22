@@ -28,7 +28,7 @@ Heureusement, on avait mis un mouchard dessus qui a capté quelques octets de do
 Les données en arrière-plan, tout le monde oublie de les désactiver. Une chance pour nous !
 On sait que la chaîne de caractères "{}" a été envoyée aux serveurs de Spotify.
 Le voleur a sûrement un lien avec le(s) tueur(s). Trouvez qui a utilisé le téléphone en retrouvant à quoi correspond "{}".
-Vous pouvez utiliser mon compte pour vous connecter aux services de Spotify : {}
+Vous pouvez utiliser mon token pour vous connecter aux services de Spotify : {}
 Si vous trouvez la réponse, envoyez-moi le nom du coupable sur la route /culprit, dans la propriété culprit_name
 """
 
