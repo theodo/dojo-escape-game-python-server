@@ -116,3 +116,45 @@ def culprit(request):
             f"Détective {user.username}, vous vous êtes trompé. Nous avons vérifié, ce n'est pas le coupable",
             status=400,
         )
+
+
+# Riddle 6
+@api_view(["POST"])
+@permission_classes((IsAuthenticated,))
+def org_leader_position(request):
+    user = request.user
+    data = request.data
+
+    LEADER_LATITUDE = 40.8814439
+    LEADER_LONGITUDE = 14.2947099
+    try:
+        sumbitted_latitude = float(data['latitude'])
+        sumbitted_longitude = float(data['longitude'])
+    except:
+        return Response(
+            {
+                "message": "Ça ne ressemble pas à des coordonnées que nos drones peuvent exploiter...",
+                "format_attendu": {"latitude": 12.1234567, "longitude": 12.1234567}
+            },
+            status=400
+        )
+
+    if sumbitted_latitude == LEADER_LATITUDE and sumbitted_longitude == LEADER_LONGITUDE:
+
+        if user.level == 4:
+            user.level = 5
+            user.save()
+
+        return Response(
+            "Et merde, il est à l'aéroport! On contacte immédiatement nos collègues italiens. " +
+            f"Il faut annuler tous les vols au départ de Naples! Merci pour le tuyau détective{user.username}. " +
+            "Cette fois-ci on le tient ce fumier !",
+            status=200,
+        )
+
+    else:
+        return Response(
+            "On a regardé les images du drone, mais il n'est pas là. " +
+            f"Je crois que vous n'avez pas récupéré les bonnes coordonnées, détective {user.username}. ",
+            status=404,
+        )

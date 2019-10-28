@@ -11,6 +11,7 @@ urlpatterns = [
     path("server-mounted", views.server_mounted, name="server_mounted"),
     path("ips", views.get_all_ips, name="all_ips"),
     path("culprit", views.culprit, name="culprit"),
+    path("leader-position", views.org_leader_position, name="org_leader_position"),
 ]
 
 app_name = ""
