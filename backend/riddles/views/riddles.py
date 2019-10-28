@@ -98,12 +98,12 @@ def culprit(request):
     user = request.user
     data = request.data
 
-    if user.level == 3:
-        user.level = 4
-
-    user.save()
-
     if data["culprit_name"].lower() == "jordan lao":
+
+        if user.level == 3:
+            user.level = 4
+            user.save()
+
         archive_name = "7c98210e2cc.zip"
         archive_password = "QuiPeutMeStopper77"
         return Response(
