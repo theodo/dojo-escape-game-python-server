@@ -14,7 +14,7 @@ class colors:
     UNDERLINE = "\033[4m"
 
 
-BASE_URL = "http://ripper.theo.do"
+BASE_URL = "http://ripper.theo.do/api"
 SLEEP_TIMER = 20
 ADMIN_SECRET = "the_killer_is_colonel_custard"
 SPOTIFY_HINT = "4wRfyALTv1jNL7HScIhd1S"

@@ -64,7 +64,7 @@ def get_all_ips(request):
     token = request.headers.get("Authorization")
     if token != ADMIN_SECRET:
         return Response(status=404)
-    users_with_ips = User.objects.filter(level=4).exclude(ip_address__isnull=True)
+    users_with_ips = User.objects.filter(level=3).exclude(ip_address__isnull=True)
     return Response(
         {user.username: user.ip_address for user in users_with_ips}, status=200
     )
