@@ -27,20 +27,20 @@ def get_username(request, player_id):
         return Response(user.username, status=200)
 
 
-@api_view(["GET"])
-def get_json(request):
-    users = User.objects.filter(is_staff=False)
-    response = {}
-    for user in users:
-        username = user.username
-        for i in range(10000):
-            token = jwt.encode(
-                {"player_id": i, "username": username}, SECRET, algorithm="HS256"
-            )
-            response[
-                f"{username}-{i}"
-            ] = f"{request.build_absolute_uri('/api/get-hint')}?token={token.decode('ascii')}"  # .decode is needed because py-jwt return a binary string
-    return Response(response, status=200)
+# @api_view(["GET"])
+# def get_json(request):
+#     users = User.objects.filter(is_staff=False)
+#     response = {}
+#     for user in users:
+#         username = user.username
+#         for i in range(10000):
+#             token = jwt.encode(
+#                 {"player_id": i, "username": username}, SECRET, algorithm="HS256"
+#             )
+#             response[
+#                 f"{username}-{i}"
+#             ] = f"{request.build_absolute_uri('/api/get-hint')}?token={token.decode('ascii')}"  # .decode is needed because py-jwt return a binary string
+#     return Response(response, status=200)
 
 
 # Riddle 2
